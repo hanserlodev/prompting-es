@@ -4,4 +4,4 @@ ingenieria rapida o su traduccion de ingles prompt enginner **Pero Que es esto r
 - Diseñar prompts
 - Optimizar prompts
 - Refinar instrucciones (Prompts)
-Esto especificamente para poder hacer buen uso de [LLM](llms/LLMS.md)
+Esto especificamente para poder hacer buen uso de [LLM](../llms/LLMS.md)
