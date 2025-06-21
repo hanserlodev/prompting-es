@@ -1,6 +1,10 @@
 # prompting-es
-Recurso sobre LLMs, agentes y prompts para IA.
+> Workflows, agentes y ingenieria rapida
 
-## Temas disponible
+## 📚 Contenido
+### 🔰 Fundamentos
 1. [LLMS](./llms/LLMS.md)
-2. [Ingenieria rapida](./ingenieria-rapida/IngenieriaRapida.md)
+2. [Workflow](./llms/WORKFLOW.md)
+
+### ⚡Técnicas básicas 
+1. [Ingenieria rapida](./ingenieria-rapida/IngenieriaRapida.md)
