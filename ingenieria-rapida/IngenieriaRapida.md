@@ -111,3 +111,8 @@ Estructura fundamental para crear un prompt basico efectivo:
 
 ## Tecnicas basicas de prompt enginner
 - [Tecnicas basicas de ingenieria rapida](./tecnicas-basica.md)
+
+## Tecnicas avanzadas de prompt enginner
+- [Tecnicas avanzadas de ingenieria rapida](./tecnicas-avanzadas.md)
+
+
