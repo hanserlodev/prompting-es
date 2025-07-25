@@ -63,6 +63,24 @@ Técnica avanzada de razonamiento donde el modelo explora múltiples caminos de 
 3. **Poda:** Elimina ramas no viables basándose en evaluaciones
 4. **Selección:** Elige el mejor camino mediante análisis comparativo
 
+
+### Temperatura
+**Temperatura** - Parámetro de configuración en los LLMs que controla el grado de aleatoriedad (o "creatividad") en las respuestas generadas. Técnicamente, modifica la distribución de probabilidad durante el muestreo de tokens.
+
+**Características principales:**
+- **Escala**: Generalmente entre 0 y 1, aunque algunos sistemas permiten valores más altos
+- **Temperatura baja (0-0.3)**: Respuestas más predecibles, determinísticas y conservadoras
+- **Temperatura media (0.4-0.7)**: Balance entre creatividad y coherencia
+- **Temperatura alta (0.8-1.0+)**: Mayor variabilidad, creatividad y potencial sorpresa
+
+**Cuándo usar diferentes valores:**
+- **Temperatura 0**: Para tareas que requieren precisión absoluta como código, matemáticas o información factual
+- **Temperatura 0.2-0.4**: Para resúmenes, respuestas técnicas y explicaciones formales
+- **Temperatura 0.5-0.7**: Para contenido general, emails y textos conversacionales
+- **Temperatura 0.8+**: Para contenido creativo como poesía, historias, ideas divergentes o brainstorming
+
+**Nota importante**: La temperatura no afecta el "conocimiento" del modelo, solo cómo se seleccionan las palabras entre las opciones probables. Un valor alto no hace que el modelo sea más inteligente, solo más impredecible.
+
 ## S
 
 ### Self-Consistency (Autoconsistencia)
