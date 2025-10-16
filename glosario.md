@@ -1,150 +1,133 @@
-# Glosario
+# Glosario profesional — Prompting y LLMs
+
+Este glosario presenta definiciones técnicas y prácticas sobre términos y técnicas clave en prompting y modelos de lenguaje. Está pensado para profesionales y personas que comienzan en el área: definiciones precisas, ejemplos de uso y notas de aplicación.
+
+---
 
 ## L
 
 ### LLM (Large Language Model)
-**Large Language Model** - Modelo de Lenguaje Grande. Sistema de inteligencia artificial entrenado para entender y generar texto humano de manera natural. Es una red neuronal entrenada con enormes cantidades de texto que aprendió a predecir qué palabra viene después en cualquier contexto. Con esa habilidad simple, desarrolló capacidades complejas como escribir, programar, explicar, traducir y conversar.
+Modelo de lenguaje a gran escala entrenado para predecir y generar texto. Los LLM aprenden patrones estadísticos del lenguaje a partir de grandes corpus y, con técnicas de fine-tuning o in-context learning, pueden adaptarse a tareas concretas (generación, clasificación, resumen, traducción, etc.).
 
-**Características:**
-- Procesó millones de textos para aprender patrones del lenguaje
-- Disponible 24/7 sin cansarse
-- Puede cometer errores o generar información incorrecta
-- Funciona mediante predicción de texto avanzada
+Aplicaciones comunes: generación de contenido, asistentes conversacionales, soporte técnico automatizado, ayuda en programación y análisis de texto.
+
+Consideraciones: riesgo de alucinaciones (información fabricada), sensibilidad a la redacción del prompt y limitaciones en conocimientos posteriores a su entrenamiento.
+
+---
 
 ## P
 
 ### Prompt
-Instrucción o mensaje que se le da a un LLM para obtener una respuesta específica. Es la entrada de texto que guía al modelo hacia el resultado deseado.
+Entrada textual que guía el comportamiento del modelo. Un prompt efectivo define: objetivo, contexto, formato de salida y restricciones.
 
-### Prompt Engineering (Ingeniería Rápida)
-Disciplina emergente centrada en diseñar, optimizar y refinar instrucciones (prompts) para hacer buen uso de LLMs con el fin de obtener respuestas más precisas, seguras y adaptadas a necesidades específicas.
+Ejemplo breve:
+"Resume este documento en tres puntos clave, cita las fuentes y proporciona referencias numeradas."
 
-**Beneficios:**
-- ✅ Mejorar habilidades existentes del LLM
-- 🚀 Aumentar conocimiento sin reentrenar
-- 🔍 Descubrir capacidades ocultas
-- 🎯 Optimizar calidad de salidas
+### Prompt engineering (Ingeniería de prompts)
+Disciplina que diseña y optimiza prompts para obtener respuestas más precisas, seguras y útiles. Incluye técnicas como few-shot, chain-of-thought, RAG, y control de temperatura.
+
+Buenas prácticas: especificar formato de salida, ofrecer ejemplos, definir el rol del modelo y limitar el alcance cuando sea necesario.
+
+---
 
 ## F
 
-### Few-shot Learning
-Técnica básica de prompt engineering que consiste en proporcionar ejemplos de entrada/salida para demostrar el formato y estilo deseado al modelo.
+### Few-shot learning
+Estrategia que muestra al modelo varios ejemplos de entrada-salida en el propio prompt para indicar el formato, estilo y criterio de evaluación.
 
-**Estructura:**
-```
-[Instrucción general]
-Ejemplo 1:
-Input: [entrada 1]
-Output: [salida deseada 1]
+Patrón típico:
+Instrucción general
+Ejemplo 1: Input → Output
+Ejemplo 2: Input → Output
+Consulta: Input → Output esperado
 
-Ejemplo 2:
-Input: [entrada 2]
-Output: [salida deseada 2]
+Uso recomendado: tareas con formatos concretos (tablas, JSON, clasificación) donde no es posible o deseable reentrenar el modelo.
 
-Input: [nueva entrada]
-Output:
-```
+---
 
 ## C
 
 ### Contextualización
-Técnica básica de prompt engineering que establece un rol o escenario para guiar la perspectiva del modelo.
+Proveer contexto o asignar un rol al modelo para orientar su perspectiva. Puede incluir antecedentes, restricciones y supuestos.
 
-**Estructura:** "Como [rol/especialista], [acción] [contexto]"
+Ejemplo: "Eres un analista de datos; responde con un resumen técnico de máximo 150 palabras y lista supuestos." 
+
+---
 
 ## T
 
-### ToT (Tree of Thoughts - Árbol de Pensamientos)
-Técnica avanzada de razonamiento donde el modelo explora múltiples caminos de solución simultáneamente, estructurando el proceso como un árbol de posibilidades.
+### ToT (Tree of Thoughts — Árbol de pensamientos)
+Marco para razonamiento que genera y evalúa múltiples cadenas de pensamiento (ramas) antes de seleccionar la solución más robusta. Es útil en problemas de búsqueda, resolución de acertijos y planificación compleja.
 
-**Proceso:**
-1. **Ramificación:** Genera múltiples opciones/soluciones en cada nodo
-2. **Evaluación:** Califica cada rama con métricas específicas
-3. **Poda:** Elimina ramas no viables basándose en evaluaciones
-4. **Selección:** Elige el mejor camino mediante análisis comparativo
+Fases: generar candidatos, evaluar con criterios explícitos, podar candidatos débiles y seleccionar la mejor solución.
+
+Limitaciones: coste computacional y necesidad de criterios de evaluación claros para evitar sesgos en la selección.
 
 
 ### Temperatura
-**Temperatura** - Parámetro de configuración en los LLMs que controla el grado de aleatoriedad (o "creatividad") en las respuestas generadas. Técnicamente, modifica la distribución de probabilidad durante el muestreo de tokens.
+Parámetro de muestreo que controla la entropía del proceso generativo. Valores bajos favorecen respuestas determinísticas; valores altos introducen variabilidad.
 
-**Características principales:**
-- **Escala**: Generalmente entre 0 y 1, aunque algunos sistemas permiten valores más altos
-- **Temperatura baja (0-0.3)**: Respuestas más predecibles, determinísticas y conservadoras
-- **Temperatura media (0.4-0.7)**: Balance entre creatividad y coherencia
-- **Temperatura alta (0.8-1.0+)**: Mayor variabilidad, creatividad y potencial sorpresa
+Orientación práctica:
+- 0 — Máxima determinismo (uso en código, cálculos, respuestas factuales)
+- 0.2–0.4 — Respuestas técnicas y resúmenes
+- 0.5–0.7 — Contenido conversacional y creativo moderado
+- 0.8+ — Exploración creativa y brainstorming
 
-**Cuándo usar diferentes valores:**
-- **Temperatura 0**: Para tareas que requieren precisión absoluta como código, matemáticas o información factual
-- **Temperatura 0.2-0.4**: Para resúmenes, respuestas técnicas y explicaciones formales
-- **Temperatura 0.5-0.7**: Para contenido general, emails y textos conversacionales
-- **Temperatura 0.8+**: Para contenido creativo como poesía, historias, ideas divergentes o brainstorming
+Nota: la temperatura no altera el conocimiento del modelo; solo cambia la diversidad de las salidas.
 
-**Nota importante**: La temperatura no afecta el "conocimiento" del modelo, solo cómo se seleccionan las palabras entre las opciones probables. Un valor alto no hace que el modelo sea más inteligente, solo más impredecible.
+---
 
 ## S
 
 ### Self-Consistency (Autoconsistencia)
-Técnica donde el modelo genera múltiples líneas de razonamiento, evalúa cada camino independientemente y selecciona la respuesta más consistente entre variantes.
+Técnica que genera múltiples respuestas independientes y selecciona la más frecuente o consistente según criterios de evaluación. Mejora la robustez en razonamientos complejos y reduce errores aleatorios.
 
-**Beneficios:**
-- Reduce errores en problemas complejos
-- Minimiza sesgos en decisiones técnicas
-- Combina perspectivas complementarias
-- Detecta contradicciones internas
+Recomendación: combinar self-consistency con prompts de evaluación explícita y métricas de verificación.
+
+---
 
 ## R
 
-### RAG (Generación Aumentada de Recuperación)
-Técnica de prompting donde se incluye información específica en el prompt para que el AI genere respuestas más precisas y verificables.
+### RAG (Retrieval-Augmented Generation — Generación aumentada por recuperación)
+Arquitectura que combina recuperación de documentos relevantes con un modelo generativo. El flujo típico es: recuperar pasajes relevantes, construir un prompt con esos pasajes y generar una respuesta condicionada en la información recuperada.
 
-**Fórmula:** Información relevante + Instrucciones claras + Pregunta = Respuesta fundamentada
+Estructura recomendada del prompt RAG:
+- Sección de contexto (fragmentos o extractos recuperados)
+- Instrucciones claras (qué hacer con la información)
+- Pregunta concreta
 
-**Estructura básica:**
-```
-# INFORMACIÓN BASE
-[Datos, documentos o código relevante]
+Precauciones: incluir metadatos sobre la fuente, evitar mezclar información conflictiva y validar con verificadores externos cuando la precisión sea crítica.
 
-# INSTRUCCIONES
-- Usa solo la información proporcionada
-- Cita las fuentes
-- Si falta info, dilo claramente
-
-# PREGUNTA
-[Tu consulta específica]
-```
+---
 
 ## I
 
-### Instrucciones Explícitas
-Comandos directos que especifican acciones concretas usando verbos imperativos.
+### Instrucciones explícitas
+Comandos directos que especifican la acción esperada, el formato y las restricciones. Usar verbo en imperativo, límites claros y ejemplos si aplica.
 
-**Estructura:** "[Verbo imperativo] [objeto] [parámetros]"
+Ejemplo: "Lista en viñetas cinco riesgos de privacidad relacionados con el uso de LLM, cada uno en máximo 20 palabras."
 
-**Ejemplos:**
-- "Resume este texto en 3 oraciones máximas"
-- "Compara X e Y usando tabla de dos columnas"
-- "Clasifica este sentimiento: positivo, neutral o negativo"
+---
 
 ## E
 
-### Especificación de Formato
-Técnica que indica cómo estructurar la respuesta del modelo.
+### Especificación de formato
+Indicar de forma explícita la estructura de salida (JSON, CSV, tabla, viñetas, etc.). Facilita el procesamiento automático y reduce ambigüedad.
 
-**Estructura:** "[Instrucción] usando formato [tipo] con [elementos]"
+Ejemplo: "Devuelve JSON con claves: resumen, acciones_recomendadas, referencias (lista)."
 
-**Ejemplos:**
-- "Responde en JSON con claves: resumen, ventajas, desventajas"
-- "Genera lista numerada con emojis para cada punto"
-- "Organiza en secciones con encabezados ##"
+---
 
 ## L
 
-### Limitación de Alcance
-Técnica que restringe longitud, profundidad o aspectos de la respuesta.
+### Limitación de alcance
+Restringir longitud, profundidad o dominio de la respuesta para mejorar precisión y relevancia.
 
-**Estructura:** "[Instrucción] [restricción] [parámetros]"
+Ejemplo: "Resume en 100 palabras y limita la respuesta a impactos económicos directos." 
 
-**Ejemplos:**
-- "Explica en máximo 100 palabras"
-- "Enumera solo 3 ventajas principales"
-- "Responde con metáfora simple"
+---
+
+### Notas finales
+- Cross-references: combina técnicas (p. ej., RAG + few-shot) para tareas que requieren evidencia y formato estricto.
+- Seguridad: cuando trabajes con información sensible, añade instrucciones para omitir, anonimizar o rechazar peticiones peligrosas.
+- Experimentación: registra versiones del prompt y métricas de salida para iterar y mejorar reproducibilidad.
